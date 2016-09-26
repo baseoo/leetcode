@@ -10,9 +10,9 @@ package com.yf.leetcode;
 
 public class Day2 {
 	 
-	 public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+	 public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 		ListNode head = new ListNode(0);
-		
+		ListNode p =head;
 		int sum = 0;//节点的和
 		int carry = 0;//进位值
 		while (l1 != null || l2 != null || carry != 0) {
@@ -20,21 +20,20 @@ public class Day2 {
 			int l22 = l2 == null ? 0 : l2.val;
 			
 			sum = l11 + l22 + carry;
-			if (sum / 10 > 0) {//有进位
+			carry = sum / 10;
+			if (carry > 0) {//有进位
 				head.next = new ListNode(sum % 10);
 			} else {
 				head.next = new ListNode(sum);
 			}
 			head = head.next;//指向下一个节点
-			l1 = l1.next;
-			l2 = l2.next;
+			l1 = l1 == null ? null : l1.next;
+			l2 = l2 == null ? null : l2.next;
 			
 		}
 		
-	    return head.next;    
+	    return p.next;    
 	 }
-	 
-	 
 }
 
 
